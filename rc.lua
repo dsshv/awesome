@@ -20,7 +20,7 @@ require("awful.hotkeys_popup.keys")
 
 -- Инициализация темы
 
-local theme_path="themes/nord_theme.lua"
+local theme_path="themes/gruvbox_theme.lua"
 
 if not beautiful.init(gears.filesystem.get_configuration_dir() .. theme_path) then
     beautiful.init(gears.filesystem.get_configuration_dir() .. theme_path)
@@ -93,16 +93,18 @@ awful.layout.layouts = {
 -- Create a launcher widget and a main menu
 myawesomemenu = {
    { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "Manual", terminal .. " -e man awesome" },
-   { "Edit config", editor_cmd .. " " .. awesome.conffile },
-   { "Restart", awesome.restart },
-   { "Quit", function() awesome.quit() end },
+   { "󰞋 Manual", terminal .. " -e man awesome" },
+   { " Edit config", editor_cmd .. " " .. awesome.conffile },
+   { " Restart", awesome.restart },
+   { "󰗼 Quit", function() awesome.quit() end },
 }
 
 -- Добавление элементов в контекстное меню awesome
 mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Terminal", "konsole" },
-                                    { "Browser", "google-chrome-stable"}
+                                    { " Terminal", "konsole" },
+                                    { "󱍢 Browser", "google-chrome-stable"},
+                                    { " Files", "dolphin"},
+                                    { "󰘦 Webstorm", "~"}
                                   }
                         })
 
@@ -161,11 +163,12 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
+
 local function set_wallpaper(s)
-    -- Wallpaper
+    -- Обои
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
+        -- Если wallpaper - функция, вызывыем ее для экрана
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
@@ -176,10 +179,12 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
+awful.spawn.with_shell("nitrogen --restore")
 
+awful.screen.connect_for_each_screen(function(s)
+    -- Установка дефолтных обоев
+    set_wallpaper(s)
+    
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
 

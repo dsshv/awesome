@@ -1,7 +1,7 @@
 theme = {}
 
     ---------------------------
-    -- Default awesome theme --
+    --     GRUVBOX THEME     --
     ---------------------------
 
     local theme_assets = require("beautiful.theme_assets")
@@ -13,24 +13,24 @@ theme = {}
 
     local theme = {}
 
-    theme.font          = "sans 8"
+    theme.font          = "JetBrains Mono 10"
 
-    theme.bg_normal     = "#222222"
-    theme.bg_focus      = "#535d6c"
-    theme.bg_urgent     = "#ff0000"
-    theme.bg_minimize   = "#444444"
+    theme.bg_normal     = "#3c3836"
+    theme.bg_focus      = "#282828"
+    theme.bg_urgent     = "#d79921"
+    theme.bg_minimize   = "#665c54"
     theme.bg_systray    = theme.bg_normal
 
-    theme.fg_normal     = "#aaaaaa"
-    theme.fg_focus      = "#ffffff"
-    theme.fg_urgent     = "#ffffff"
-    theme.fg_minimize   = "#ffffff"
+    theme.fg_normal     = "#928374"
+    theme.fg_focus      = "#fbf1c7"
+    theme.fg_urgent     = "#fbf1c7"
+    theme.fg_minimize   = "#fbf1c7"
 
     theme.useless_gap   = dpi(0)
     theme.border_width  = dpi(1)
-    theme.border_normal = "#000000"
-    theme.border_focus  = "#535d6c"
-    theme.border_marked = "#91231c"
+    theme.border_normal = "#1d2021"
+    theme.border_focus  = "#7c6f64"
+    theme.border_marked = "#fabd2f"
 
     -- There are other variable sets
     -- overriding the default one when
@@ -99,8 +99,6 @@ theme = {}
     theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
     theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
-    theme.wallpaper = themes_path.."default/background.png"
-
     -- You can use your own layout icons like this:
     theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
     theme.layout_fairv = themes_path.."default/layouts/fairvw.png"
@@ -118,6 +116,9 @@ theme = {}
     theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
     theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
     theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
+
+    -- Обои
+    theme.wallpaper = "../wallpapers/ign-waifu.png"
 
     -- Generate Awesome icon:
     theme.awesome_icon = theme_assets.awesome_icon(
