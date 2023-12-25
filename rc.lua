@@ -186,7 +186,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
     
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -248,31 +248,26 @@ root.buttons(gears.table.join(
 -- {{{ Key bindings
 globalkeys = gears.table.join(
 
-    -- Переключение раскладки клавиатуры
+    -- Switch the keyboard layout
     awful.key({ "Shift" }, "Alt_L", (function () mykeyboardlayout.next_layout(); end),
-            {description="Переключить раскладку клавиатуры", group="awesome"}),
+            {description="Switch the keyboard layout", group="awesome"}),
     awful.key({ "Mod1" }, "Shift_L", (function () mykeyboardlayout.next_layout(); end),
-            {description="Переключить раскладку клавиатуры", group="awesome"}),
+            {description="Switch the keyboard layout", group="awesome"}),
 
-    -- Показать комбинации клавиш
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
-              {description="Покзать комбинации клавиш", group="awesome"}),
-
-    -- Переключиться на следующий Tag
-    --     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
-    --               {description = "view previous", group = "tag"}),
-
-    -- Переключить все мониторы на предыдущий Tag
+    -- Show help
+    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help, {description="Help", group="awesome"}),
+    
+    -- Switch all screens to previous tag
     awful.key({ modkey,           }, "Left",
         function()
             for i = 1, screen.count() do
                 awful.tag.viewprev(i)
             end
         end,
-        {description = "Переключиться на следующий tag", group = "tag"}),
+        {description = "Show previous tag", group = "tag"}),
 
-    -- Переключить все мониторы на следующий Tag
-     awful.key(
+    -- Switch all screens to next tag
+    awful.key(
         { modkey,           },
         "Right",
         function()
@@ -280,10 +275,10 @@ globalkeys = gears.table.join(
                 awful.tag.viewnext(i)
             end
         end,
-        {description = "Переключиться на предыдущий tag", group = "tag"}
+        {description = "Show next tag", group = "tag"}
     ),
 
-    -- Вернуться на прошлый Tag
+    -- go back to previous tag
     awful.key(
         { modkey,           },
         "Escape",
@@ -292,7 +287,7 @@ globalkeys = gears.table.join(
                 awful.tag.history.restore(i)
             end
         end,
-        {description = "Вернуться назад", group = "tag"}
+        {description = "Go back", group = "tag"}
     ),
 
     awful.key({ modkey,           }, "j",
@@ -417,7 +412,7 @@ clientkeys = gears.table.join(
             c.maximized = not c.maximized
             c:raise()
         end ,
-        {description = "(un)maximize", group = "client"}),
+        {description = "(Un)maximize", group = "client"}),
     awful.key({ modkey, "Control" }, "m",
         function (c)
             c.maximized_vertical = not c.maximized_vertical
@@ -438,16 +433,18 @@ clientkeys = gears.table.join(
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
-        -- View tag only.
+        -- Переключение всех мониторов на Tag
         awful.key({ modkey }, "#" .. i + 9,
-                  function ()
-                        local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
-                        if tag then
-                           tag:view_only()
-                        end
-                  end,
-                  {description = "view tag #"..i, group = "tag"}),
+            function ()
+                for j = 1, screen.count() do
+                    local tag = screen[j].tags[i]
+                    if tag then
+                    tag:view_only()
+                    end
+                end
+            end,
+            {description = "View tag # only"..i, group = "tag"}),
+
         -- Toggle tag display.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
