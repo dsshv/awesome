@@ -15,16 +15,16 @@ theme = {}
 
     theme.font          = "JetBrains Mono 10"
 
-    theme.bg_normal     = "#3c3836"
+    theme.bg_normal     = "#282828"
     theme.bg_focus      = "#282828"
     theme.bg_urgent     = "#d79921"
     theme.bg_minimize   = "#665c54"
     theme.bg_systray    = theme.bg_normal
 
-    theme.fg_normal     = "#928374"
-    theme.fg_focus      = "#fbf1c7"
-    theme.fg_urgent     = "#fbf1c7"
-    theme.fg_minimize   = "#fbf1c7"
+    theme.fg_normal     = "#ebdbb2"
+    theme.fg_focus      = "#d5c4a1"
+    theme.fg_urgent     = "#d5c4a1"
+    theme.fg_minimize   = "#d5c4a1"
 
     theme.useless_gap   = dpi(0)
     theme.border_width  = dpi(1)
